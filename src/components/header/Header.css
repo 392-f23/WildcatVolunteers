@@ -94,10 +94,17 @@
   padding: 10px;
   margin-right: 20px;
   border-radius: 5px;
-  display: flex;
-  gap: 5px;
 }
 
 .post-opps-btn img {
   height: 15px;
+  margin-left: 5px;
+}
+
+.post-opps-btn div {
+  display: flex;
+}
+
+.nav-link {
+  z-index: 1000;
 }

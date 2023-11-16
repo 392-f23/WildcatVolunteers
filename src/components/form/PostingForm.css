@@ -1,0 +1,89 @@
+.posting-form-div {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px; /* Adjust as needed */
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.posting-form-div input[type="text"],
+.posting-form-div input[type="date"],
+.posting-form-div input[type="time"],
+.posting-form-div input[type="number"],
+.posting-form-div select,
+.posting-form-div textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.posting-form-div input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.posting-form-div label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.posting-form-div .submit-button {
+  background-color: #674ea7;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.posting-form-div button:hover {
+  background-color: #674ea7;
+}
+
+.posting-form-div div {
+  margin-bottom: 10px;
+}
+
+.skills-input {
+  margin-top: -10px;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.skill {
+  font-size: 12px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #eef;
+  border-radius: 5px;
+}
+
+.skill button {
+  margin-left: 5px;
+  background: none;
+  border: none;
+  color: darkred;
+  cursor: pointer;
+}
+
+.skill button:hover {
+  margin-left: 5px;
+  background: none;
+  border: none;
+  color: darkred;
+  cursor: pointer;
+}
+
+.posting-form-div p {
+  color: #674ea7;
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
