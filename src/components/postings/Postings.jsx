@@ -10,6 +10,9 @@ const Postings = ( {user}) => {
   // everytime data gets updated, set the filtered data to data
   useEffect(() => {
     setFilteredData(data);
+    if (data) {
+      setFilteredData(Object.values(data))
+    }
   }, [data]);
 
 
