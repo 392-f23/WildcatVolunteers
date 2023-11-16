@@ -25,8 +25,12 @@ const Header = ({ user }) => {
           </button>
         )}
         <button className="post-opps-btn left-buttons">
-          POST OPPORTUNITIES
-          <img src="edit.png"></img>
+          <Link className="nav-link" to="/post">
+            <div>
+              POST OPPORTUNITIES
+              <img src="edit.png"></img>
+            </div>
+          </Link>
         </button>
         <div className="sign-in-div">
           {user ? (

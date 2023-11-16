@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "eventName": "Community Park Clean-Up",
     "organization": "Green Earth Initiative",
     "location": "Sunset Park, Downtown",
@@ -17,7 +16,6 @@
     "maxVolunteers": 20
   },
   {
-    "id": 2,
     "eventName": "Food Bank Assistance",
     "organization": "Helping Hands Food Bank",
     "location": "Helping Hands Center, Maple Street",
@@ -33,7 +31,6 @@
     "maxVolunteers": 15
   },
   {
-    "id": 3,
     "eventName": "Senior Tech Education",
     "organization": "Tech for All Ages",
     "location": "Riverdale Retirement Home",
@@ -47,7 +44,6 @@
     "maxVolunteers": 10
   },
   {
-    "id": 4,
     "eventName": "Animal Shelter Volunteers",
     "organization": "Happy Tails Animal Shelter",
     "location": "Happy Tails, Elm Road",
@@ -64,7 +60,6 @@
     "maxVolunteers": 8
   },
   {
-    "id": 5,
     "eventName": "Local Library Book Sorting",
     "organization": "City Library",
     "location": "Central City Library, Main Street",
