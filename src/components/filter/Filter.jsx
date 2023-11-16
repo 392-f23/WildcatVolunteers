@@ -5,7 +5,7 @@ const Filter = () => {
     <div className="filter-div">
       <div>
         <button>
-          <strong>FILTER ▽</strong>
+          <img src="filter.png"></img>
         </button>
       </div>
     </div>
