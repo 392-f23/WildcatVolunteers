@@ -4,9 +4,13 @@ import "./Posting.css";
 const Posting = ({ key, data, user }) => {
   const currentVolunteers = data.currentVolunteers || [];
   const isFull = currentVolunteers.length >= data.maxVolunteers;
-  const isSignedUp = currentVolunteers.some(
-    (volunteer) => volunteer.email === user.email
-  );
+  let isSignedUp = false;
+
+  if (user) {
+    const isSignedUp = currentVolunteers.some(
+      (volunteer) => volunteer.email === user.email
+    );
+  }
 
   // Function to format date in "Month Day, Year" format
   const formatDate = (dateString) => {
@@ -60,13 +64,13 @@ const Posting = ({ key, data, user }) => {
       )}
       <p>
         <strong>REQUIRED SKILLS</strong>
-        <div>
+        <p>
           {data.requiredSkills.map((skill, index) => (
             <span key={index} className="required-skill">
               {skill}
             </span>
           ))}
-        </div>
+        </p>
       </p>
       <p>
         <strong>CURRENT VOLUNTEERS</strong>
@@ -75,34 +79,38 @@ const Posting = ({ key, data, user }) => {
         </p>
       </p>
       <div className="buttons-post">
-        <div className="signing-up-buttons">
-          {!isFull && !isSignedUp && (
-            <button
-              className="button-post sign-up"
-              onClick={() => {
-                /* sign-up logic */
-              }}
-            >
-              <strong>SIGN UP</strong>
-            </button>
-          )}
-
-          {isFull && <p className="event-is-full">Event is full</p>}
-
-          {isSignedUp && (
-            <>
-              <p>You are already signed up for this event.</p>
+        {user ? (
+          <div className="signing-up-buttons">
+            {!isFull && !isSignedUp && (
               <button
-                className="button-post opt-out"
+                className="button-post sign-up"
                 onClick={() => {
-                  /* opt-out logic */
+                  /* sign-up logic */
                 }}
               >
-                <strong>OPT OUT</strong>
+                <strong>SIGN UP</strong>
               </button>
-            </>
-          )}
-        </div>
+            )}
+
+            {isFull && <p className="event-is-full">Event is full</p>}
+
+            {isSignedUp && (
+              <>
+                <p>You are already signed up for this event.</p>
+                <button
+                  className="button-post opt-out"
+                  onClick={() => {
+                    /* opt-out logic */
+                  }}
+                >
+                  <strong>OPT OUT</strong>
+                </button>
+              </>
+            )}
+          </div>
+        ) : (
+          <div></div>
+        )}
         <div className="social-buttons">
           {!isFull && (
             <>

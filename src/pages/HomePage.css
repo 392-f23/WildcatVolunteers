@@ -1,0 +1,6 @@
+.search-filter-div {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 5px;
+  margin-bottom: 0px;
+}

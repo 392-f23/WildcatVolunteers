@@ -1,12 +1,16 @@
 import Postings from "../components/postings/Postings";
+import Search from "../components/search/Search";
+import Filter from "../components/filter/Filter";
+import "./HomePage.css"
 
-const HomePage = ( {user} ) => {
+const HomePage = ({ user }) => {
   return (
     <div>
-      <h2>Insert Search Bar</h2>
-      <h2>Insert Filtering System</h2>
-      <Postings user={user}>
-      </Postings>
+      <div className="search-filter-div">
+        <Search></Search>
+        <Filter></Filter>
+      </div>
+      <Postings user={user}></Postings>
     </div>
   );
 };

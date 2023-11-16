@@ -1,0 +1,17 @@
+.filter-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.filter-div button {
+  background-color: transparent;
+  border: none;
+  color: #674ea7;
+  font-size: 15px;
+}
+
+.filter-div button:hover {
+  cursor: pointer;
+}
