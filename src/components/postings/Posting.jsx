@@ -62,16 +62,18 @@ const Posting = ({ key, data, user }) => {
           </ul>
         </div>
       )}
-      <p>
-        <strong>REQUIRED SKILLS</strong>
+      {data.requiredSkills && (
         <p>
-          {data.requiredSkills.map((skill, index) => (
-            <span key={index} className="required-skill">
-              {skill}
-            </span>
-          ))}
+          <strong>REQUIRED SKILLS</strong>
+          <p>
+            {data.requiredSkills.map((skill, index) => (
+              <span key={index} className="required-skill">
+                {skill}
+              </span>
+            ))}
+          </p>
         </p>
-      </p>
+      )}
       <p>
         <strong>CURRENT VOLUNTEERS</strong>
         <p>

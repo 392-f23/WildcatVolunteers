@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useDbAdd } from "../../utilities/firebase";
 import "./PostingForm.css";
 
 const PostingForm = () => {
-  // useState hooks for each field
   const [eventName, setEventName] = useState("");
   const [organization, setOrganization] = useState("");
   const [location, setLocation] = useState("");
@@ -16,6 +16,8 @@ const PostingForm = () => {
   const [days, setDays] = useState([]);
   const [startTimes, setStartTimes] = useState([]);
   const [endTimes, setEndTimes] = useState([]);
+
+  const [add, result] = useDbAdd("/");
 
   const handleSkillKeyDown = (e) => {
     if (e.key === "Enter" && e.target.value) {
@@ -47,27 +49,41 @@ const PostingForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const startTimes = Object.values(days).map((day) => day.startTime);
-    const endTimes = Object.values(days).map((day) => day.endTime);
-
-    const eventData = {
-      eventName,
-      organization,
-      location,
-      opportunityType,
-      date,
-      startTime,
-      endTime,
-      description,
-      requiredSkills,
-      currentVolunteers: [],
-      maxVolunteers,
-      days: opportunityType === "Continuous" ? Object.keys(days) : undefined,
-      startTimes,
-      endTimes,
-    };
-    console.log(eventData); // Replace with actual submission logic
+    if (opportunityType == "Continuous") {
+      const startTimes = Object.values(days).map((day) => day.startTime);
+      const endTimes = Object.values(days).map((day) => day.endTime);
+      const eventData = {
+        eventName,
+        organization,
+        location,
+        opportunityType,
+        description,
+        requiredSkills,
+        currentVolunteers: [],
+        maxVolunteers,
+        days: opportunityType === "Continuous" ? Object.keys(days) : undefined,
+        startTimes,
+        endTimes,
+      };
+      console.log(eventData);
+      add(eventData);
+    } else {
+      const eventData = {
+        eventName,
+        organization,
+        location,
+        opportunityType,
+        description,
+        requiredSkills,
+        currentVolunteers: [],
+        maxVolunteers,
+        date,
+        startTime,
+        endTime,
+      };
+      console.log(eventData);
+      add(eventData);
+    }
   };
 
   const daysOfWeek = [
@@ -121,7 +137,9 @@ const PostingForm = () => {
         onChange={(e) => setOpportunityType(e.target.value)}
         required
       >
-        <option value="">Select Opportunity Type</option>
+        <option value="" disabled>
+          Select Opportunity Type
+        </option>
         <option value="Continuous">Continuous</option>
         <option value="One-off">One-off</option>
       </select>
@@ -160,6 +178,7 @@ const PostingForm = () => {
               {days[day] && (
                 <div>
                   <input
+                    className="startTime"
                     type="time"
                     value={days[day].startTime}
                     onChange={(e) =>
@@ -207,7 +226,9 @@ const PostingForm = () => {
         placeholder="Max Volunteers"
         required
       />
-      <button className="submit-button" type="submit">Submit</button>
+      <button className="submit-button" type="submit">
+        Submit
+      </button>
     </form>
   );
 };

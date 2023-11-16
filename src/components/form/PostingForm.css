@@ -33,13 +33,16 @@
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.2s;
+  font-size: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .posting-form-div button:hover {
-  background-color: #674ea7;
+  background-color: #3d296d;
 }
 
 .posting-form-div div {
@@ -66,7 +69,6 @@
 }
 
 .skill button {
-  margin-left: 5px;
   background: none;
   border: none;
   color: darkred;
@@ -74,7 +76,6 @@
 }
 
 .skill button:hover {
-  margin-left: 5px;
   background: none;
   border: none;
   color: darkred;
@@ -86,4 +87,8 @@
   font-weight: 700;
   font-size: 13px;
   margin-bottom: 5px;
+}
+
+.startTime {
+  margin-top: 5px;
 }
