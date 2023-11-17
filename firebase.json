@@ -1,0 +1,9 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "site": "wildcat-volunteers-392",
+    "public": "dist"
+  }
+}

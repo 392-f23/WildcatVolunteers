@@ -1,0 +1,80 @@
+[
+  {
+    "eventName": "Community Park Clean-Up",
+    "organization": "Green Earth Initiative",
+    "location": "Sunset Park, Downtown",
+    "opportunityType": "One-off",
+    "date": "2023-12-05",
+    "startTime": "09:00",
+    "endTime": "12:00",
+    "description": "Join us to clean and beautify Sunset Park. Activities include litter removal, planting flowers, and painting benches.",
+    "requiredSkills": ["Teamwork", "Physical Stamina"],
+    "currentVolunteers": [
+      { "name": "John Doe", "email": "johndoe2025@u.northwestern.edu" },
+      { "name": "Jane Smith", "email": "janesmith2024@u.northwestern.edu" }
+    ],
+    "maxVolunteers": 20
+  },
+  {
+    "eventName": "Food Bank Assistance",
+    "organization": "Helping Hands Food Bank",
+    "location": "Helping Hands Center, Maple Street",
+    "opportunityType": "Continuous",
+    "days": ["Monday", "Wednesday", "Friday"],
+    "startTimes": ["13:00", "13:00", "14:00"],
+    "endTimes": ["15:00", "17:00", "18:00"],
+    "description": "Help sort, package, and distribute food items to families in need.",
+    "requiredSkills": ["Organizational Skills", "Compassion"],
+    "currentVolunteers": [
+      { "name": "Emily Turner", "email": "emilyturner2023@u.northwestern.edu" }
+    ],
+    "maxVolunteers": 15
+  },
+  {
+    "eventName": "Senior Tech Education",
+    "organization": "Tech for All Ages",
+    "location": "Riverdale Retirement Home",
+    "opportunityType": "Continuous",
+    "days": ["Tuesday", "Thursday"],
+    "startTimes": ["13:00", "13:00"],
+    "endTimes": ["15:00", "17:00"],
+    "description": "Assist seniors in learning basic computer and internet skills.",
+    "requiredSkills": ["Patience", "Basic Computer Knowledge"],
+    "currentVolunteers": [],
+    "maxVolunteers": 10
+  },
+  {
+    "eventName": "Animal Shelter Volunteers",
+    "organization": "Happy Tails Animal Shelter",
+    "location": "Happy Tails, Elm Road",
+    "opportunityType": "One-off",
+    "date": "2023-12-28",
+    "startTime": "09:00",
+    "endTime": "12:00",
+    "description": "Support the shelter by helping with animal care, cleaning, and potential adoptions.",
+    "requiredSkills": ["Animal Care", "Empathy"],
+    "currentVolunteers": [
+      { "name": "Alex Johnson", "email": "alexjohnson2026@u.northwestern.edu" },
+      { "name": "Samantha Lee", "email": "samanthalee2024@u.northwestern.edu" }
+    ],
+    "maxVolunteers": 8
+  },
+  {
+    "eventName": "Local Library Book Sorting",
+    "organization": "City Library",
+    "location": "Central City Library, Main Street",
+    "opportunityType": "Continuous",
+    "days": ["Saturday"],
+    "startTimes": ["09:00"],
+    "endTimes": ["12:00"],
+    "description": "Assist in organizing and shelving books at the city library.",
+    "requiredSkills": ["Attention to Detail", "Literacy Appreciation"],
+    "currentVolunteers": [
+      {
+        "name": "Michael Brown",
+        "email": "michaelbrown2025@u.northwestern.edu"
+      }
+    ],
+    "maxVolunteers": 5
+  }
+]
