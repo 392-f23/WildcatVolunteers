@@ -24,14 +24,16 @@ const Header = ({ user }) => {
             </Link>
           </button>
         )}
-        <button className="post-opps-btn left-buttons">
-          <Link className="nav-link" to="/post">
-            <div>
-              POST OPPORTUNITIES
-              <img src="edit.png"></img>
-            </div>
-          </Link>
-        </button>
+        {user && (
+          <button className="post-opps-btn left-buttons">
+            <Link className="nav-link" to="/post">
+              <div>
+                POST OPPORTUNITIES
+                <img src="edit.png"></img>
+              </div>
+            </Link>
+          </button>
+        )}
         <div className="sign-in-div">
           {user ? (
             <button className="google-signed-in-btn" onClick={signOut}>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDbAdd } from "../../utilities/firebase";
 import "./PostingForm.css";
 
-const PostingForm = () => {
+const PostingForm = ( { user }) => {
   const [eventName, setEventName] = useState("");
   const [organization, setOrganization] = useState("");
   const [location, setLocation] = useState("");
@@ -48,11 +48,14 @@ const PostingForm = () => {
     });
   };
 
+  console.log(user.email)
+
   const handleSubmit = (e) => {
     if (opportunityType == "Continuous") {
       const startTimes = Object.values(days).map((day) => day.startTime);
       const endTimes = Object.values(days).map((day) => day.endTime);
       const eventData = {
+        email: user.email,
         eventName,
         organization,
         location,
@@ -69,6 +72,7 @@ const PostingForm = () => {
       add(eventData);
     } else {
       const eventData = {
+        email: user.email,
         eventName,
         organization,
         location,

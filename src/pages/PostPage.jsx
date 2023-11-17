@@ -1,10 +1,10 @@
 import "./PostPage.css"
 import PostingForm from "../components/form/PostingForm";
 
-const PostPage = () => {
+const PostPage = ( {user} ) => {
   return (
     <div className="posting-page-div">
-      <PostingForm></PostingForm>
+      <PostingForm user={user}></PostingForm>
     </div>
   );
 };
