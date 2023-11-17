@@ -1,7 +1,7 @@
 import "./Search.css";
 import React, { useState } from "react";
 
-const Search = () => {
+const Search = ({ onSearch }) => {
   const [searchInput, setSearchInput] = useState("");
 
   const handleSearchChange = (e) => {
@@ -10,7 +10,10 @@ const Search = () => {
   };
 
   const handleSearchSubmit = (e) => {
-    // enter the logic for searching
+    e.preventDefault();
+    if (onSearch) {
+      onSearch(searchInput);
+    }
   };
 
   return (
