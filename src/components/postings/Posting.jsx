@@ -23,6 +23,26 @@ const Posting = ({ key, data, user }) => {
     const [hours, minutes] = timeString.split(":");
     return `${hours % 12 || 12}:${minutes} ${hours >= 12 ? "PM" : "AM"}`;
   };
+  const createGoogleCalendarEventUrl = () => {
+    const { eventName, description, location, date, startTime, endTime } = data;
+  
+    const startDate = new Date(`${date} ${startTime}`);
+    const endDate = new Date(`${date} ${endTime}`);
+  
+    // Format dates to YYYYMMDDTHHMMSSZ
+    const formatGoogleCalendarDate = (date) => {
+      return date.toISOString().replace(/-|:|\.\d\d\d/g, "");
+    };
+  
+    const googleCalendarUrl = new URL('https://calendar.google.com/calendar/render?action=TEMPLATE');
+    googleCalendarUrl.searchParams.append('text', eventName);
+    googleCalendarUrl.searchParams.append('details', description);
+    googleCalendarUrl.searchParams.append('location', location);
+    googleCalendarUrl.searchParams.append('dates', `${formatGoogleCalendarDate(startDate)}/${formatGoogleCalendarDate(endDate)}`);
+  
+    return googleCalendarUrl.href;
+  };
+  
 
   return (
     <div className="posting-div">
@@ -127,11 +147,13 @@ const Posting = ({ key, data, user }) => {
               <button
                 className="button-post add-to-cal"
                 onClick={() => {
-                  /* add to Google Calendar logic */
+                  const googleCalendarEventUrl = createGoogleCalendarEventUrl();
+                  window.open(googleCalendarEventUrl, '_blank');
                 }}
               >
-                <img src="cal.png"></img>
+                <img src="cal.png" alt="Add to Calendar"></img>
               </button>
+
             </>
           )}
         </div>
