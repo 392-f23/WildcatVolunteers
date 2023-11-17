@@ -55,7 +55,6 @@ const PostingForm = ( { user }) => {
       const startTimes = Object.values(days).map((day) => day.startTime);
       const endTimes = Object.values(days).map((day) => day.endTime);
       const eventData = {
-        email: user.email,
         eventName,
         organization,
         location,
@@ -72,7 +71,6 @@ const PostingForm = ( { user }) => {
       add(eventData);
     } else {
       const eventData = {
-        email: user.email,
         eventName,
         organization,
         location,
