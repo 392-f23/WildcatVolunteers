@@ -48,7 +48,6 @@ const PostingForm = ( { user }) => {
     });
   };
 
-  console.log(user.email)
 
   const handleSubmit = (e) => {
     if (opportunityType == "Continuous") {
