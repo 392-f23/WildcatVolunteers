@@ -24,9 +24,10 @@ const Search = ({ onSearch }) => {
           placeholder="Search..."
           onChange={handleSearchChange}
           value={searchInput}
+
         />
       </form>
-      <img className="search-icon" src="search.png"></img>
+      <img className="search-icon icon" src="search.png"></img>
     </div>
   );
 };
