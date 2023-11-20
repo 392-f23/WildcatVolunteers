@@ -1,30 +1,26 @@
 import { useState, useEffect } from "react";
+import { useDbData } from "../utilities/firebase"
 
-const MyEventsPage = ( {user} ) => {
-  const [events, setEvents] = useState([]);
-  useEffect(() => {
-        // Fetch the signed-up events from an API or local storage
-        // This is a placeholder for the actual fetching logic
-        fetchSignedUpEvents().then(data => setEvents(data));
-    }, []);
+const MyEventsPage = ({ user }) => {
+  const [myData, setMyData] = useState([]);
+  const [data, loading, error] = useDbData("/");
 
-    if (events.length === 0) {
-        return <p>You haven't signed up for any events yet.</p>;
-    }
+  console.log(user)
+  console.log(data)
 
-    return (
-        <div>
-            {events.map(event => (
-                <Posting key={event.id} {...event} /> // Render Posting component for each event
-            ))}
-        </div>
-    );
+//   if (!events) {
+//     return (
+//       <p className="no-events">You haven't signed up for any events yet.</p>
+//     );
+//   }
+
+  return (
+    <div className="my-events-page">
+      {/* {events.map((event) => (
+        <Posting key={event.id} {...event} /> // Render Posting component for each event
+      ))} */}
+    </div>
+  );
 };
 
 export default MyEventsPage;
-
-// Placeholder for fetching events logic
-const fetchSignedUpEvents = async () => {
-    // Implement the logic to fetch events data
-    // Return the data in the expected format
-};
