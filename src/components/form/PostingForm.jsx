@@ -48,7 +48,6 @@ const PostingForm = ( { user }) => {
     });
   };
 
-
   const handleSubmit = (e) => {
     if (opportunityType == "Continuous") {
       const startTimes = Object.values(days).map((day) => day.startTime);

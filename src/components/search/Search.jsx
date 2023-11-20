@@ -1,7 +1,7 @@
 import "./Search.css";
 import React, { useState } from "react";
 
-const Search = () => {
+const Search = ({ onSearch }) => {
   const [searchInput, setSearchInput] = useState("");
 
   const handleSearchChange = (e) => {
@@ -10,7 +10,10 @@ const Search = () => {
   };
 
   const handleSearchSubmit = (e) => {
-    // enter the logic for searching
+    e.preventDefault();
+    if (onSearch) {
+      onSearch(searchInput);
+    }
   };
 
   return (
@@ -21,9 +24,10 @@ const Search = () => {
           placeholder="Search..."
           onChange={handleSearchChange}
           value={searchInput}
+
         />
       </form>
-      <img className="search-icon" src="search.png"></img>
+      <img className="search-icon icon" src="search.png"></img>
     </div>
   );
 };
