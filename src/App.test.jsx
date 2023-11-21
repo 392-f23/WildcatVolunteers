@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import * as firebaseUtils from './utilities/firebase';
 import '@testing-library/jest-dom';
@@ -33,4 +33,22 @@ describe('App and Header tests', () => {
     expect(postOpportunitiesButton).toBeInTheDocument();
   });
 
+});
+
+import Search from './components/search/Search';
+describe('Search Component', () => {
+  it('calls onSearch with the correct value when a search is performed', () => {
+    const handleSearchMock = vi.fn();
+    render(<Search onSearch={handleSearchMock} />);
+
+    // Simulate user typing in the search bar
+    const searchInput = screen.getByPlaceholderText('Search...');
+    fireEvent.change(searchInput, { target: { value: 'volunteer' } });
+
+    // Simulate form submission
+    fireEvent.submit(searchInput);
+
+    // Expect the mock function to be called with the input value
+    expect(handleSearchMock).toHaveBeenCalledWith('volunteer');
+  });
 });
