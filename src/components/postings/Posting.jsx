@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
+import { useDbAdd, useDbRemove } from "../../utilities/firebase";
 import "./Posting.css";
 
 const Posting = ({ key, data, user }) => {
   const currentVolunteers = data.currentVolunteers || [];
   const isFull = currentVolunteers.length >= data.maxVolunteers;
-  let isSignedUp = false;
+  const [addData, addResult] = useDbAdd(`${data.id}/currentVolunteers`);
+  const [removeData, removeResult] = useDbRemove();
+  const [isSignedUp, setIsSignedUp] = useState(false);
 
-  if (user) {
-    const isSignedUp = currentVolunteers.some(
-      (volunteer) => volunteer.email === user.email
-    );
-  }
+  useEffect(() => {
+    if (user) {
+      setIsSignedUp(Object.values(currentVolunteers).some(
+        (volunteer) => volunteer === user.email
+      ))
+    }
+  }, [user, data.currentVolunteers]);
 
   // Function to format date in "Month Day, Year" format
   const formatDate = (dateString) => {
@@ -48,6 +53,13 @@ const Posting = ({ key, data, user }) => {
     );
 
     return googleCalendarUrl.href;
+  };
+
+  const handleUserRemove = (path) => {
+    const keyToRemove = Object.keys(currentVolunteers).find(key => currentVolunteers[key] === user.email);
+    if (keyToRemove) {
+      removeData(`${path}/${keyToRemove}`);
+    }
   };
 
   return (
@@ -103,17 +115,17 @@ const Posting = ({ key, data, user }) => {
       <p>
         <strong>CURRENT VOLUNTEERS</strong>
         <p>
-          {currentVolunteers.length}/{data.maxVolunteers}
+          {Object.values(currentVolunteers).length}/{data.maxVolunteers}
         </p>
       </p>
       <div className="buttons-post">
         {user ? (
           <div className="signing-up-buttons">
-            {!isFull && !isSignedUp && (
+            {!isFull && !isSignedUp && data.poster != user.email && (
               <button
                 className="button-post sign-up"
                 onClick={() => {
-                  /* sign-up logic */
+                  addData(user.email);
                 }}
               >
                 <strong>SIGN UP</strong>
@@ -124,11 +136,11 @@ const Posting = ({ key, data, user }) => {
 
             {isSignedUp && (
               <>
-                <p>You are already signed up for this event.</p>
+                <p className="sign-up-text">You are already signed up for this event.</p>
                 <button
                   className="button-post opt-out"
                   onClick={() => {
-                    /* opt-out logic */
+                    handleUserRemove(`${data.id}/currentVolunteers`)
                   }}
                 >
                   <strong>OPT OUT</strong>

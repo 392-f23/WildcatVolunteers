@@ -48,7 +48,7 @@ p strong {
   justify-content: space-between;
 }
 
-.signing-up-buttons .button-post {
+.signing-up-buttons .sign-up {
   background-color: lavender;
   border: none;
   color: #674ea7;
@@ -78,7 +78,7 @@ p strong {
   cursor: pointer;
 }
 
-.signing-up-buttons .button-post:hover {
+.signing-up-buttons .sign-up:hover {
   background-color: rgb(188, 188, 229);
 }
 
@@ -101,6 +101,30 @@ p strong {
 
 .social-buttons img {
   width: 30px;
+}
+
+.sign-up-text {
+  color: rgb(141, 0, 0);
+  font-weight: 600;
+}
+
+.opt-out {
+  background-color: pink;
+  border: none;
+  color: maroon;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px -2px 0px -2px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.opt-out:hover {
+  background-color: palevioletred;
 }
 
 @media (min-width: 600px) {

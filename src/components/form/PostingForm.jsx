@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDbAdd } from "../../utilities/firebase";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 import "./PostingForm.css";
 
 const PostingForm = ({ user }) => {
@@ -19,7 +20,8 @@ const PostingForm = ({ user }) => {
   const [endTimes, setEndTimes] = useState([]);
   const [userEmail, setUserEmail] = useState("");
 
-  const [add, result] = useDbAdd("/");
+  const newId = uuidv4()
+  const [add, result] = useDbAdd("/", newId);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -73,7 +75,8 @@ const PostingForm = ({ user }) => {
         days: opportunityType === "Continuous" ? Object.keys(days) : undefined,
         startTimes,
         endTimes,
-        poster: userEmail
+        poster: userEmail,
+        id: newId,
       };
       console.log(eventData);
       add(eventData);
@@ -90,7 +93,8 @@ const PostingForm = ({ user }) => {
         date,
         startTime,
         endTime,
-        poster: userEmail
+        poster: userEmail,
+        id: newId,
       };
       console.log(eventData);
       add(eventData);
