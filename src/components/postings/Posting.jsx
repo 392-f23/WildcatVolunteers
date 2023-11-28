@@ -25,24 +25,30 @@ const Posting = ({ key, data, user }) => {
   };
   const createGoogleCalendarEventUrl = () => {
     const { eventName, description, location, date, startTime, endTime } = data;
-  
+
     const startDate = new Date(`${date} ${startTime}`);
     const endDate = new Date(`${date} ${endTime}`);
-  
+
     // Format dates to YYYYMMDDTHHMMSSZ
     const formatGoogleCalendarDate = (date) => {
       return date.toISOString().replace(/-|:|\.\d\d\d/g, "");
     };
-  
-    const googleCalendarUrl = new URL('https://calendar.google.com/calendar/render?action=TEMPLATE');
-    googleCalendarUrl.searchParams.append('text', eventName);
-    googleCalendarUrl.searchParams.append('details', description);
-    googleCalendarUrl.searchParams.append('location', location);
-    googleCalendarUrl.searchParams.append('dates', `${formatGoogleCalendarDate(startDate)}/${formatGoogleCalendarDate(endDate)}`);
-  
+
+    const googleCalendarUrl = new URL(
+      "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    );
+    googleCalendarUrl.searchParams.append("text", eventName);
+    googleCalendarUrl.searchParams.append("details", description);
+    googleCalendarUrl.searchParams.append("location", location);
+    googleCalendarUrl.searchParams.append(
+      "dates",
+      `${formatGoogleCalendarDate(startDate)}/${formatGoogleCalendarDate(
+        endDate
+      )}`
+    );
+
     return googleCalendarUrl.href;
   };
-  
 
   return (
     <div className="posting-div">
@@ -137,23 +143,23 @@ const Posting = ({ key, data, user }) => {
           {!isFull && (
             <>
               <button
-                className="button-post share"
+                className="button-post share mail"
                 onClick={() => {
-                  /* share event logic */
+                  const mailtoLink = `mailto:${data.poster}`;
+                  window.location.href = mailtoLink;
                 }}
               >
-                <img src="share.png"></img>
+                <img src="mail.png"></img>
               </button>
               <button
                 className="button-post add-to-cal"
                 onClick={() => {
                   const googleCalendarEventUrl = createGoogleCalendarEventUrl();
-                  window.open(googleCalendarEventUrl, '_blank');
+                  window.open(googleCalendarEventUrl, "_blank");
                 }}
               >
                 <img src="cal.png" alt="Add to Calendar"></img>
               </button>
-
             </>
           )}
         </div>

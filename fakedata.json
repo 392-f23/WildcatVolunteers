@@ -13,7 +13,8 @@
       { "name": "John Doe", "email": "johndoe2025@u.northwestern.edu" },
       { "name": "Jane Smith", "email": "janesmith2024@u.northwestern.edu" }
     ],
-    "maxVolunteers": 20
+    "maxVolunteers": 20,
+    "poster": "p.voraprukpisut@gmail.com"
   },
   {
     "eventName": "Food Bank Assistance",
@@ -28,7 +29,8 @@
     "currentVolunteers": [
       { "name": "Emily Turner", "email": "emilyturner2023@u.northwestern.edu" }
     ],
-    "maxVolunteers": 15
+    "maxVolunteers": 15,
+    "poster": "p.voraprukpisut@gmail.com"
   },
   {
     "eventName": "Senior Tech Education",
@@ -41,7 +43,8 @@
     "description": "Assist seniors in learning basic computer and internet skills.",
     "requiredSkills": ["Patience", "Basic Computer Knowledge"],
     "currentVolunteers": [],
-    "maxVolunteers": 10
+    "maxVolunteers": 10,
+    "poster": "p.voraprukpisut@gmail.com"
   },
   {
     "eventName": "Animal Shelter Volunteers",
@@ -57,7 +60,8 @@
       { "name": "Alex Johnson", "email": "alexjohnson2026@u.northwestern.edu" },
       { "name": "Samantha Lee", "email": "samanthalee2024@u.northwestern.edu" }
     ],
-    "maxVolunteers": 8
+    "maxVolunteers": 8,
+    "poster": "p.voraprukpisut@gmail.com"
   },
   {
     "eventName": "Local Library Book Sorting",
@@ -75,6 +79,7 @@
         "email": "michaelbrown2025@u.northwestern.edu"
       }
     ],
-    "maxVolunteers": 5
+    "maxVolunteers": 5,
+    "poster": "p.voraprukpisut@gmail.com"
   }
 ]

@@ -4,6 +4,12 @@
   },
   "hosting": {
     "site": "wildcat-volunteers-392",
-    "public": "dist"
+    "public": "dist",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }

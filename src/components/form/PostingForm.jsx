@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDbAdd } from "../../utilities/firebase";
+import { useNavigate } from "react-router-dom";
 import "./PostingForm.css";
 
-const PostingForm = ( { user }) => {
+const PostingForm = ({ user }) => {
   const [eventName, setEventName] = useState("");
   const [organization, setOrganization] = useState("");
   const [location, setLocation] = useState("");
@@ -16,8 +17,16 @@ const PostingForm = ( { user }) => {
   const [days, setDays] = useState([]);
   const [startTimes, setStartTimes] = useState([]);
   const [endTimes, setEndTimes] = useState([]);
+  const [userEmail, setUserEmail] = useState("");
 
   const [add, result] = useDbAdd("/");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      setUserEmail(user.email);
+    }
+  }, [user]);
 
   const handleSkillKeyDown = (e) => {
     if (e.key === "Enter" && e.target.value) {
@@ -64,6 +73,7 @@ const PostingForm = ( { user }) => {
         days: opportunityType === "Continuous" ? Object.keys(days) : undefined,
         startTimes,
         endTimes,
+        poster: userEmail
       };
       console.log(eventData);
       add(eventData);
@@ -80,9 +90,11 @@ const PostingForm = ( { user }) => {
         date,
         startTime,
         endTime,
+        poster: userEmail
       };
       console.log(eventData);
       add(eventData);
+      navigate("/");
     }
   };
 

@@ -114,6 +114,11 @@ p strong {
   }
 }
 
+.mail img {
+  margin-top: 3px;
+  width: 35px;
+}
+
 /* Random pastel colors for required skills */
 .required-skill:nth-child(1) {
   background-color: #fdd;
