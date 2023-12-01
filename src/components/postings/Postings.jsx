@@ -6,7 +6,6 @@ import "./Postings.css";
 const Postings = ({ user, searchTerm, filterData }) => {
   const [data, loading, error] = useDbData("/");
   const [filteredData, setFilteredData] = useState(data);
-  // everytime data gets updated, set the filtered data to data
   useEffect(() => {
     setFilteredData(data);
     if (data) {
@@ -48,7 +47,9 @@ const Postings = ({ user, searchTerm, filterData }) => {
 
           // Check volunteer spots only if filterData.volunteerSpots is not null
           const currentVolunteersCount = item.currentVolunteers
-            ? item.currentVolunteers.length
+            ? Array.isArray(item.currentVolunteers)
+              ? item.currentVolunteers.length
+              : Object.values(item.currentVolunteers).length
             : 0;
 
           const isVolunteerSpotMatch =
