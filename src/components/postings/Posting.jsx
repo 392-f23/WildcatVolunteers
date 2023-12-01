@@ -11,9 +11,11 @@ const Posting = ({ key, data, user }) => {
 
   useEffect(() => {
     if (user) {
-      setIsSignedUp(Object.values(currentVolunteers).some(
-        (volunteer) => volunteer === user.email
-      ))
+      setIsSignedUp(
+        Object.values(currentVolunteers).some(
+          (volunteer) => volunteer === user.email
+        )
+      );
     }
   }, [user, data.currentVolunteers]);
 
@@ -56,7 +58,9 @@ const Posting = ({ key, data, user }) => {
   };
 
   const handleUserRemove = (path) => {
-    const keyToRemove = Object.keys(currentVolunteers).find(key => currentVolunteers[key] === user.email);
+    const keyToRemove = Object.keys(currentVolunteers).find(
+      (key) => currentVolunteers[key] === user.email
+    );
     if (keyToRemove) {
       removeData(`${path}/${keyToRemove}`);
     }
@@ -91,12 +95,16 @@ const Posting = ({ key, data, user }) => {
             <strong className="days-and-times">DAYS AND TIMES</strong>
           </p>
           <ul>
-            {data.days.map((day, index) => (
-              <li key={index}>
-                {day}: {formatTime(data.startTimes[index])} -{" "}
-                {formatTime(data.endTimes[index])}
-              </li>
-            ))}
+            {data.days && Array.isArray(data.days) && (
+              <ul>
+                {data.days.map((day, index) => (
+                  <li key={index}>
+                    {day}: {formatTime(data.startTimes[index])} -{" "}
+                    {formatTime(data.endTimes[index])}
+                  </li>
+                ))}
+              </ul>
+            )}
           </ul>
         </div>
       )}
@@ -136,11 +144,13 @@ const Posting = ({ key, data, user }) => {
 
             {isSignedUp && (
               <>
-                <p className="sign-up-text">You are already signed up for this event.</p>
+                <p className="sign-up-text">
+                  You are already signed up for this event.
+                </p>
                 <button
                   className="button-post opt-out"
                   onClick={() => {
-                    handleUserRemove(`${data.id}/currentVolunteers`)
+                    handleUserRemove(`${data.id}/currentVolunteers`);
                   }}
                 >
                   <strong>OPT OUT</strong>

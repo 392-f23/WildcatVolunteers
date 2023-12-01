@@ -1,0 +1,67 @@
+/* General styling for the MyEventsPage */
+.my-events-page {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.my-events-page h2 {
+  margin-left: 5px;
+}
+
+/* Styling for event cards */
+.event-card {
+  background-color: white;
+  border: 2px solid #674ea7;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.event-card h3 {
+  color: #333;
+  margin-top: 0;
+}
+
+/* Styling for event details */
+.event-card p {
+  color: #555;
+  margin: 5px 0;
+}
+
+.event-card strong {
+  color: #333;
+}
+
+.event-passed {
+  background-color: lightgray;
+}
+
+/* Styling for list of days and times */
+.event-card ul {
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.event-card li {
+  list-style-type: circle;
+  color: #555;
+}
+
+/* Styling for section headings */
+.my-events-page h2 {
+  color: #674ea7;
+  margin-bottom: 15px;
+}
+
+/* Styling for 'No events' message */
+.no-events-message {
+  color: #888;
+  font-style: italic;
+}
+
+/* Optional: Styling for the loading and error messages */
+.loading,
+.error {
+  color: #cc0000;
+  font-weight: bold;
+}
