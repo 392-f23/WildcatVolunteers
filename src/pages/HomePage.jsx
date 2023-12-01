@@ -6,18 +6,23 @@ import "./HomePage.css"
 
 const HomePage = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterData, setFilterData] = useState({});
 
   const handleSearch = (term) => {
     setSearchTerm(term);
+  };
+
+  const handleFilterSubmit = (data) => {
+    setFilterData(data);
   };
 
   return (
     <div>
       <div className="search-filter-div">
         <Search onSearch={handleSearch} />
-        <Filter></Filter>
+        <Filter onSubmit={handleFilterSubmit}></Filter>
       </div>
-      <Postings user={user} searchTerm={searchTerm}></Postings>
+      <Postings user={user} searchTerm={searchTerm} filterData={filterData}></Postings>
     </div>
   );
 };

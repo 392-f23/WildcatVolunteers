@@ -5,7 +5,14 @@
   margin-right: 20px;
 }
 
-.filter-div button {
+.filter-div .close-btn {
+  background-color: transparent;
+  border: none;
+  color: #674ea7;
+  font-size: 15px;
+}
+
+.filter-div .filter-pop {
   background-color: transparent;
   border: none;
   color: #674ea7;
@@ -18,4 +25,104 @@
 
 .filter-div img {
   width: 35px;
+}
+
+.filter-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Grey tint */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.filter-popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 20;
+  width: 50vw;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.filter-div p {
+  font-size: 13px;
+  color: #674ea7;
+  margin-left: 3px;
+}
+
+input[type="date"],
+input[type="time"],
+input[type="text"],
+input[type="number"],
+select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Checkbox label styles */
+.filter-popup label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter-popup label input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Styles for the skills list */
+.skills-list {
+  margin-top: 5px;
+}
+
+/* Style adjustments for select dropdown */
+select {
+  cursor: pointer;
+}
+
+/* Header text style */
+.filter-popup p {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.submit-btn {
+  background-color: #674ea7; /* Green background */
+  color: white;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.submit-btn-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  margin-top: 10px;
 }
