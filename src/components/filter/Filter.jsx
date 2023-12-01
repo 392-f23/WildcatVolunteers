@@ -76,7 +76,7 @@ const Filter = ({ onSubmit }) => {
               placeholder="Add Required Skills (Press Enter)"
               className="skills-input"
             />
-            <p>MIN. # OF SPOTS</p>
+            <p>MIN. # OF SPOTS LEFT</p>
             <input
               type="number"
               value={volunteerSpots}

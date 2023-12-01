@@ -20,7 +20,7 @@ const Postings = ({ user, searchTerm, filterData }) => {
             item.organization.toLowerCase().includes(lowerCaseSearchTerm)
         );
       }
-      if (filterData) {
+      if (filterData && Object.keys(filterData).length) {
         newFilteredData = newFilteredData.filter((item) => {
           // Check filterType only if filterData.filterType is not null
           let isTypeMatch = filterData.filterType
@@ -42,7 +42,7 @@ const Postings = ({ user, searchTerm, filterData }) => {
                 )
               : true; // If no skills specified in filterData, don't filter out this item.
 
-          if (filterData.skills.length === 0) {
+          if (filterData.skills && filterData.skills.length === 0) {
             isSkillMatch = true;
           }
 
