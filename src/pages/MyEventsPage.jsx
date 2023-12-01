@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useDbData } from "../utilities/firebase";
+import { useDbData, useDbRemove } from "../utilities/firebase";
 import "./MyEventsPage.css"
 
 const MyEventsPage = ({ user }) => {
   const [data, loading, error] = useDbData("/");
   const [hostedEvents, setHostedEvents] = useState([]);
   const [attendedEvents, setAttendedEvents] = useState([]);
+  const [removeData, removeResult] = useDbRemove();
 
   useEffect(() => {
     if (user && user.email && data) {
@@ -18,6 +19,10 @@ const MyEventsPage = ({ user }) => {
       setAttendedEvents(attended);
     }
   }, [data, user]);
+
+  const deleteEvent = (eventx) => {
+    removeData(`/${eventx.id}`);
+  }
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -44,6 +49,11 @@ const MyEventsPage = ({ user }) => {
             <h3>{event.eventName}</h3>
             <p>{event.description}</p>
             <p><strong>📍</strong> {event.location}</p>
+            <button onClick={() => deleteEvent(event, index)}
+            className="remove-btn"
+            >
+              X
+            </button>
             {event.opportunityType === "One-off" ? (
               <p>
                 <strong>⏰</strong> {formatDate(event.date)} {formatTime(event.startTime)} - {formatTime(event.endTime)}

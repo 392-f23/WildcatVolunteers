@@ -30,6 +30,11 @@ const PostingForm = ({ user }) => {
     }
   }, [user]);
 
+  const routeChange = () =>{ 
+    let path = `/myevents`; 
+    navigate(path);
+  }
+
   const handleSkillKeyDown = (e) => {
     if (e.key === "Enter" && e.target.value) {
       e.preventDefault(); // Prevent form submission
