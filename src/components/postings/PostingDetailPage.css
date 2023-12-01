@@ -1,0 +1,134 @@
+.posting-div-detail {
+    background-color: white;
+    border: 1px solid #e0e0e0; /* Lighter border */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    padding: 24px; /* Increased padding */
+    margin: 10px;
+    border-radius: 12px; /* Slightly larger border radius */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Open Sans', sans-serif; /* Modern font */
+  }
+  
+  
+  .posting-div h1 {
+    color: #674ea7;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .posting-div h2 {
+    font-size: 15px;
+    margin: 5px 0px;
+  }
+  
+  .posting-div p {
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+  
+  .posting-div ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .posting-div ul li {
+    margin-bottom: 5px;
+    font-size: 15px;
+  }
+  
+  p strong {
+    font-size: 13px;
+    color: #674ea7;
+  }
+  
+  .buttons-post {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .signing-up-buttons .button-post {
+    background-color: lavender;
+    border: none;
+    color: #674ea7;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px -2px 0px -2px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .social-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .social-buttons button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .social-buttons button:hover {
+    cursor: pointer;
+  }
+  
+  .signing-up-buttons .button-post:hover {
+    background-color: rgb(188, 188, 229);
+  }
+  
+  .required-skill {
+    display: inline-block;
+    background-color: #fdd;
+    color: black;
+    padding: 5px 10px;
+    margin-top: 7px;
+    margin-right: 7px;
+    margin-left: -2px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  
+  .event-is-full {
+    color: rgb(255, 136, 136);
+    font-weight: bold;
+  }
+  
+  .social-buttons img {
+    width: 30px;
+  }
+  
+  @media (min-width: 600px) {
+    .posting-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+    .posting-div {
+      flex-basis: calc(33% - 20px);
+    }
+  }
+  
+  /* Random pastel colors for required skills */
+  .required-skill:nth-child(1) {
+    background-color: #fdd;
+  }
+  .required-skill:nth-child(2) {
+    background-color: #dfd;
+  }
+  .required-skill:nth-child(3) {
+    background-color: #ddf;
+  }
+  .required-skill:nth-child(4) {
+    background-color: #ffd;
+  }
+  .required-skill:nth-child(5) {
+    background-color: #dff;
+  }

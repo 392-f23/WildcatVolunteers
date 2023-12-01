@@ -1,24 +1,12 @@
-import { useState, useEffect } from "react";
-import { useDbAdd, useDbRemove } from "../../utilities/firebase";
-import "./Posting.css";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useDbData } from '../../utilities/firebase';
+import "./PostingDetailPage.css"; // Import the CSS for consistent styling
 
-const Posting = ({ key, data, user }) => {
-  const currentVolunteers = data.currentVolunteers || [];
-  const isFull = currentVolunteers.length >= data.maxVolunteers;
-  const [addData, addResult] = useDbAdd(`${data.id}/currentVolunteers`);
-  const [removeData, removeResult] = useDbRemove();
-  const [isSignedUp, setIsSignedUp] = useState(false);
-
-  useEffect(() => {
-    if (user) {
-      setIsSignedUp(
-        Object.values(currentVolunteers).some(
-          (volunteer) => volunteer === user.email
-        )
-      );
-    }
-  }, [user, data.currentVolunteers]);
+const PostingDetailPage = () => {
+  const { postingId } = useParams();
+  const [data, loading, error] = useDbData(`/${postingId}`);
+  const [user] = useState(null); // Replace with actual user state logic
 
   // Function to format date in "Month Day, Year" format
   const formatDate = (dateString) => {
@@ -31,44 +19,46 @@ const Posting = ({ key, data, user }) => {
     const [hours, minutes] = timeString.split(":");
     return `${hours % 12 || 12}:${minutes} ${hours >= 12 ? "PM" : "AM"}`;
   };
-  const createGoogleCalendarEventUrl = () => {
-    const { eventName, description, location, date, startTime, endTime } = data;
 
+  const createGoogleCalendarEventUrl = (eventData) => {
+    const { eventName, description, location, date, startTime, endTime } = eventData;
+  
     const startDate = new Date(`${date} ${startTime}`);
     const endDate = new Date(`${date} ${endTime}`);
-
+  
     // Format dates to YYYYMMDDTHHMMSSZ
     const formatGoogleCalendarDate = (date) => {
       return date.toISOString().replace(/-|:|\.\d\d\d/g, "");
     };
-
-    const googleCalendarUrl = new URL(
-      "https://calendar.google.com/calendar/render?action=TEMPLATE"
-    );
-    googleCalendarUrl.searchParams.append("text", eventName);
-    googleCalendarUrl.searchParams.append("details", description);
-    googleCalendarUrl.searchParams.append("location", location);
-    googleCalendarUrl.searchParams.append(
-      "dates",
-      `${formatGoogleCalendarDate(startDate)}/${formatGoogleCalendarDate(
-        endDate
-      )}`
-    );
-
+  
+    const googleCalendarUrl = new URL('https://calendar.google.com/calendar/render?action=TEMPLATE');
+    googleCalendarUrl.searchParams.append('text', eventName);
+    googleCalendarUrl.searchParams.append('details', description);
+    googleCalendarUrl.searchParams.append('location', location);
+    googleCalendarUrl.searchParams.append('dates', `${formatGoogleCalendarDate(startDate)}/${formatGoogleCalendarDate(endDate)}`);
+  
     return googleCalendarUrl.href;
   };
 
-  const handleUserRemove = (path) => {
-    const keyToRemove = Object.keys(currentVolunteers).find(
-      (key) => currentVolunteers[key] === user.email
-    );
-    if (keyToRemove) {
-      removeData(`${path}/${keyToRemove}`);
-    }
-  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!data) {
+    return <div>No posting found</div>;
+  }
+
+  // Check if the current user is signed up
+  const currentVolunteers = data.currentVolunteers || [];
+  const isFull = currentVolunteers.length >= data.maxVolunteers;
+  let isSignedUp = user && currentVolunteers.some(volunteer => volunteer.email === user.email);
 
   return (
-    <div className="posting-div">
+    <div className="posting-div-detail">
       <Link to={`/postings/${data.id}`}> {/* Assuming 'data.id' is the unique identifier */}
         <h1>{data.eventName}</h1>
       </Link>
@@ -174,7 +164,7 @@ const Posting = ({ key, data, user }) => {
                   window.location.href = mailtoLink;
                 }}
               >
-                <img src="mail.png"></img>
+                <img src="/mail.png"></img>
               </button>
               <button
                 className="button-post add-to-cal"
@@ -183,7 +173,7 @@ const Posting = ({ key, data, user }) => {
                   window.open(googleCalendarEventUrl, "_blank");
                 }}
               >
-                <img src="cal.png" alt="Add to Calendar"></img>
+                <img src="/cal.png" alt="Add to Calendar"></img>
               </button>
             </>
           )}
@@ -193,4 +183,4 @@ const Posting = ({ key, data, user }) => {
   );
 };
 
-export default Posting;
+export default PostingDetailPage;
