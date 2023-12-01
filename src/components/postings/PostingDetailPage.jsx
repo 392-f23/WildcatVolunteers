@@ -1,17 +1,12 @@
-import { useState, useEffect } from "react";
-import "./Posting.css";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useDbData } from '../../utilities/firebase';
+import "./PostingDetailPage.css"; // Import the CSS for consistent styling
 
-const Posting = ({ key, data, user }) => {
-  const currentVolunteers = data.currentVolunteers || [];
-  const isFull = currentVolunteers.length >= data.maxVolunteers;
-  let isSignedUp = false;
-
-  if (user) {
-    const isSignedUp = currentVolunteers.some(
-      (volunteer) => volunteer.email === user.email
-    );
-  }
+const PostingDetailPage = () => {
+  const { postingId } = useParams();
+  const [data, loading, error] = useDbData(`/${postingId}`);
+  const [user] = useState(null); // Replace with actual user state logic
 
   // Function to format date in "Month Day, Year" format
   const formatDate = (dateString) => {
@@ -24,8 +19,9 @@ const Posting = ({ key, data, user }) => {
     const [hours, minutes] = timeString.split(":");
     return `${hours % 12 || 12}:${minutes} ${hours >= 12 ? "PM" : "AM"}`;
   };
-  const createGoogleCalendarEventUrl = () => {
-    const { eventName, description, location, date, startTime, endTime } = data;
+
+  const createGoogleCalendarEventUrl = (eventData) => {
+    const { eventName, description, location, date, startTime, endTime } = eventData;
   
     const startDate = new Date(`${date} ${startTime}`);
     const endDate = new Date(`${date} ${endTime}`);
@@ -43,10 +39,26 @@ const Posting = ({ key, data, user }) => {
   
     return googleCalendarUrl.href;
   };
-  
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!data) {
+    return <div>No posting found</div>;
+  }
+
+  // Check if the current user is signed up
+  const currentVolunteers = data.currentVolunteers || [];
+  const isFull = currentVolunteers.length >= data.maxVolunteers;
+  let isSignedUp = user && currentVolunteers.some(volunteer => volunteer.email === user.email);
 
   return (
-    <div className="posting-div">
+    <div className="posting-div-detail">
       <Link to={`/postings/${data.id}`}> {/* Assuming 'data.id' is the unique identifier */}
         <h1>{data.eventName}</h1>
       </Link>
@@ -145,7 +157,7 @@ const Posting = ({ key, data, user }) => {
                   /* share event logic */
                 }}
               >
-                <img src="share.png"></img>
+                <img src="../../public/share.png"></img>
               </button>
               <button
                 className="button-post add-to-cal"
@@ -154,7 +166,7 @@ const Posting = ({ key, data, user }) => {
                   window.open(googleCalendarEventUrl, '_blank');
                 }}
               >
-                <img src="cal.png" alt="Add to Calendar"></img>
+                <img src="../../public/cal.png" alt="Add to Calendar"></img>
               </button>
 
             </>
@@ -165,4 +177,4 @@ const Posting = ({ key, data, user }) => {
   );
 };
 
-export default Posting;
+export default PostingDetailPage;

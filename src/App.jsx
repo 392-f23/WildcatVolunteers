@@ -6,6 +6,7 @@ import Header from "./components/header/Header";
 import HomePage from "./pages/HomePage";
 import MyEventsPage from "./pages/MyEventsPage";
 import PostPage from "./pages/PostPage";
+import PostingDetailPage from "./components/postings/PostingDetailPage";
 
 const App = () => {
   const [{ user, isAdmin, emailVerified }, profileLoading, profileError] =
@@ -23,6 +24,7 @@ const App = () => {
               path="/post"
               element={<PostPage user={user} />}
             ></Route>
+            <Route path="/postings/:postingId" element={<PostingDetailPage />} />
           </Routes>
         </div>
       </Router>
